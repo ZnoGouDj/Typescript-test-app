@@ -1,5 +1,6 @@
 import Header from '../../core/components/header';
 import Page from '../../core/templates/page';
+import ErrorPage, { ErrorTypes } from '../error';
 import MainPage from '../main';
 import SettingsPage from '../settings';
 import StatisticsPage from '../statistics';
@@ -29,6 +30,8 @@ class App {
       page = new SettingsPage(idPage);
     } else if (idPage === PageIds.StatisticsPage) {
       page = new StatisticsPage(idPage);
+    } else {
+      page = new ErrorPage(idPage, ErrorTypes.Error_404);
     }
 
     if (page) {
@@ -52,7 +55,7 @@ class App {
 
   run() {
     App.container.append(this.header.render());
-    App.renderNewPage('settings-page');
+    App.renderNewPage('main-page');
     this.enableRouteChange();
   }
 }
